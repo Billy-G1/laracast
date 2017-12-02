@@ -24,21 +24,25 @@ use App\Task;
 //Route::get('/', 'TasksControll
 
 Route::get('/tasks', 'TasksController@index');
-
 Route::get('/tasks/{task}', 'TasksController@show');
 
+Route::get('/', 'PostsController@index');
+Route::get('/posts/{post}', 'PostsController@show');
 
 
+Route::get('/about', function () {
+    return view('about');
+});
+
+/*
 Route::get('/', function () {
 	$name = 'Alexander';
 	$age = 27;
 		
 	return view('welcome', compact('name', 'age'));
 });
+*/
 
-Route::get('/about', function () {
-    return view('about');
-});
 
 /*
 
