@@ -29,6 +29,8 @@
        @include('layouts/sidebar')
 
       </div><!-- /.row -->
+	  
+	  
 
     </main><!-- /.container -->
 

@@ -13,7 +13,7 @@
 	
 	<hr>
 	
-	<div class="coments">
+	<div class="comments">
 		<ul class="list-group">
 		@foreach ($post->comments as $comment)
 			<li class="list-group-item">
@@ -22,6 +22,26 @@
 			
 		@endforeach
 		</ul>
+	</div>
+	<HR>
+	
+
+
+	
+		<div class="card-block">
+			<form method="POST" action="/posts/{{ $post->id }}/comments">
+			{{ csrf_field() }}
+				<div class="form-group">
+					<textarea style="width: 100%;" name="body" placeholder="Your comment here"></textarea>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Add a comment</button>
+				</div>
+			</form>
+		</div>
+		
+		@include ('layouts/errors')
+		
 	</div>
 </div>
 @endsection
