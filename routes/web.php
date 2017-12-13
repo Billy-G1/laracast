@@ -34,7 +34,7 @@ Route::get('/posts/create', 'PostsController@create');  //for page for post crea
 
 Route::get('/', 'PostsController@index');
 Route::get('/posts/{post}', 'PostsController@show');
-Route::get('/posts/', 'PostsController@all');
+//Route::get('/posts/', 'PostsController@all');
 
 
 
