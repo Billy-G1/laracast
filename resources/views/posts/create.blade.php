@@ -25,7 +25,7 @@
 		 </div>
 		 
 	</form>
-	@include('layouts/error')
+	@include('layouts/errors')
 	</div>
 	
 	

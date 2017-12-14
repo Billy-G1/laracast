@@ -20,19 +20,21 @@
 
    @include ('layouts/nav')
 
-    <main role="main" class="container">
+    <main role="main" class="container" style="width: 100%; float: left;">
 
       <div class="row">
 
         @yield ('content')
 
-       @include('layouts/sidebar')
+       
 
       </div><!-- /.row -->
 	  
 	  
 
     </main><!-- /.container -->
+	
+	@include('layouts/sidebar')
 
     @include ('layouts/footer')
 

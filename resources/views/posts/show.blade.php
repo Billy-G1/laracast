@@ -42,7 +42,7 @@
 		
 		@include ('layouts/errors')
 		
-	</div>
 </div>
+
 @endsection
 
