@@ -5,8 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 
+use Illuminate\Support\Facades\Auth;
+
 class PostsController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth')->except(['index', 'show', 'create']);
+	}
+	
     public function index()
 	{
 		$posts = Post::latest()->get();
@@ -27,12 +34,23 @@ class PostsController extends Controller
 	
 	public function create()
 	{
+		if (Auth::check())
+		{
+			//exit('authenticated');
 		return view ('posts/create');
+		}
+		
+		
+		else 
+		{
+			return redirect('/login');
+		}
+		
 	}
 	
 	public function store()
 	{
-		//dd(request(['title', 'body']));
+		//dd(request(['title', 'body', 'auth()->id()']));
 		$post = new Post;
 		/*
 		$post->title = request('title');
@@ -45,9 +63,14 @@ class PostsController extends Controller
 			'body' => 'required'
 		]);
 		
+		//Post::create(request(['title', 'body', 'user_id']));
+		//auth()->user()->publish( new Post(request(['title', 'body'])));
+		//dd (auth()->id());
+		
 		Post::create([
 		'title' => request('title'),
-		'body' => request('body')
+		'body' => request('body'),
+		'user_id' => Auth::id()               //13:20
 		]);
 		
 		return redirect('/');

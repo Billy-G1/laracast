@@ -32,14 +32,21 @@ Route::get('/tasks/{task}', 'TasksController@show');
 
 Route::get('/posts/create', 'PostsController@create');  //for page for post creation
 
-Route::get('/', 'PostsController@index');
+Route::get('/', 'PostsController@index')->name('home');
 Route::get('/posts/{post}', 'PostsController@show');
 //Route::get('/posts/', 'PostsController@all');
 
 Route::post('/posts', 'PostsController@store');   //to store post after pressing button "publish", 
 //                                                  request type is POST
-Route::post('posts/{post}/comments', 'CommentsController@store');
+Route::post('/posts/{post}/comments', 'CommentsController@store');  //to store comments
 
+Route::get('/register', 'RegistrationController@create');   //for registration new users
+Route::post('/register', 'RegistrationController@store'); 
+
+Route::get('/login', 'SessionsController@login');   //for authentication
+Route::post('/login', 'SessionsController@store');
+Route::get('/logout', 'SessionsController@logout');      //You are getting that error because you are POSTing to a GET route.
+/////////////////https://stackoverflow.com/questions/19760585/laravel-throwing-methodnotallowedhttpexception
 Route::get('/about', function () {
     return view('about');
 });

@@ -1,3 +1,5 @@
+@extends ('layouts.master')
+<!--
 <!DOCTYPE html>
 
 <html lang="{{ app()->getLocale() }}">
@@ -8,12 +10,13 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
+        
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 		
 		<link href="./css/style.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
+	-->
+	@section ('content')
 	<h1>About us</h1>
-	</body>
-</html>
+	@endsection

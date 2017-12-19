@@ -2,11 +2,20 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent;
+use Illuminate\Database\Query\Builder;
+
+
 
 class Post extends Model
 {
-     protected $fillable = ['title', 'body'];
+	//$id =1;
+    protected $fillable = ['title', 'body', 'user_id', 'post_id'];
+	/*
+	protected $fillable = [
+        'name', 'email', 'password', 'title', 'body', 'user_id', 'post_id'
+    ];
+	*/
 	public function comments()
 	{
 		return $this->hasMany(Comment::class);
@@ -14,13 +23,15 @@ class Post extends Model
 	
 	public function addComment ($body)
 	{
-		$this->comments()->create(compact('body'));
-		/*
+		//$this->comments()->create(compact('body'));
+		
+		
 		Comment::create([
 			'body' => $body,
-			'post_id' => $this->id
+			'post_id' => $this->id,
+			'user_id' => auth()->user()->id()
 			]);
-			*/
+			
 	}
 	
 	public function user()

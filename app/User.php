@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Auth\Authenticatable;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'title', 'body', 'user_id', 'post_id'
     ];
 
     /**
@@ -31,4 +32,17 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Post::class);;
 	}
+	
+	public function publish(Post $post)
+	{
+		//$this->posts()->save($post);
+		
+		Post::create([
+		'title' => request('title'),
+		'body' => request('body'),
+		'user_id' => auth()->user()->id()               //13:41
+		]);
+		
+	}
+	
 }

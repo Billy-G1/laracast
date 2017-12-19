@@ -6,7 +6,7 @@
 <div class="col-sm-8 blog-main">
 	<h1 class="blog-post-title">{{ $post->title }}</h1>
 	
-	<p class="blog-post-meta">{{ $post->created_at->toFormattedDateString() }} <a href="#">Mark</a></p>
+	<p class="blog-post-meta">{{ $post->created_at->toFormattedDateString() }} 
 	<hr>
 	{{ $post->body }}
 	</p>
@@ -17,7 +17,7 @@
 		<ul class="list-group">
 		@foreach ($post->comments as $comment)
 			<li class="list-group-item">
-			<p>{{ $post->created_at->diffForHumans() }}:</p>
+			<p>{{ $post->created_at }}:</p>
 			<p>{{ $comment->body }}</p>
 			
 		@endforeach
@@ -26,7 +26,7 @@
 	<HR>
 	
 
-
+		@if (Auth::check())
 	
 		<div class="card-block">
 			<form method="POST" action="/posts/{{ $post->id }}/comments">
@@ -39,7 +39,7 @@
 				</div>
 			</form>
 		</div>
-		
+		@endif
 		@include ('layouts/errors')
 		
 </div>
