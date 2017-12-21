@@ -35,8 +35,9 @@
     </main><!-- /.container -->
 	
 	@include('layouts/sidebar')
-
+<div class="footer">
     @include ('layouts/footer')
+</div>
 
 
     

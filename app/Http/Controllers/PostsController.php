@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -11,13 +12,31 @@ class PostsController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('auth')->except(['index', 'show', 'create']);
+		$this->middleware('auth')->except(['index', 'show', 'create', 'all']);
 	}
 	
     public function index()
 	{
-		$posts = Post::latest()->get();
+		global $posts, $archives;
+		$posts = Post::latest()
+		->filter(request(['month', 'year']))
+		->get();
+		/*
+		if ($month = request('month')) 
+		{
+			$posts->whereMonth('created_at', Carbon::parse($month)->month);
+		}
 		
+		if ($year = request('year'))
+		{
+			$posts->whereYear('created_at', $year);
+		}
+		
+		$posts = $posts->get();
+		*/
+		//$archives = Post::archives();
+		
+				
 		return view ('posts/index', compact('posts'));
 	}
 	
@@ -29,7 +48,8 @@ class PostsController extends Controller
 	public function all()
 	{
 		//exit("Stop now!");
-		return view ('posts/all');
+		//return view ('posts/all');
+		return redirect('/');
 	}
 	
 	public function create()
@@ -43,7 +63,7 @@ class PostsController extends Controller
 		
 		else 
 		{
-			return redirect('/login');
+			return redirect('/');
 		}
 		
 	}
